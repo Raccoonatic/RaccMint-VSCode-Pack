@@ -1,0 +1,311 @@
+{
+    // ==========================================
+    // 1. CORE EDITOR SETTINGS
+    // ==========================================
+    "window.zoomLevel": 0.7,
+	"editor.tabSize": 4,
+    "editor.rulers": [80],
+    "editor.insertSpaces": false,
+    "editor.semanticHighlighting.enabled": true,
+    "editor.fontSize": 14,
+    "editor.inlineSuggest.edits.showCollapsed": true,
+	"diffEditor.ignoreTrimWhitespace": false,
+
+    // ==========================================
+    // 2. TERMINAL SETTINGS
+    // ==========================================
+    "terminal.integrated.fontSize": 14,
+
+    // ==========================================
+    // 3. EXTENSION: CODE RUNNER
+    // ==========================================
+    "code-runner.executorMap": {
+        "cpp": "c++ -Wall -Wextra -Werror -std=c++98 -I. $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+        "c": "cc -Wall -Wextra -Werror -I. $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt"
+    },
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.runInTerminal": true,
+
+    // ==========================================
+    // 4. EXTENSION: CLANGD (C++ COMPILER)
+    // ==========================================
+    "clangd.path": "/home/mapache/.config/Code - Insiders/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/22.1.6/clangd_22.1.6/bin/clangd",
+    "clangd.fallbackFlags": [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-std=c++98"
+    ],
+
+    // ==========================================
+    // 5. EXTENSION: GITLENS & AI
+    // ==========================================
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4o-mini",
+
+    // ==========================================
+    // 6. THEME & ICON SELECTION
+    // ==========================================
+    "workbench.productIconTheme": "material-product-icons",
+    "workbench.iconTheme": "charmed-warm",
+    "workbench.colorTheme": "Tokyo Night Gogh",
+
+    // ==========================================
+    // 7. UI: WORKBENCH CUSTOMIZATIONS (The Skeleton)
+    // ==========================================
+    "workbench.colorCustomizations": {
+        // Global Overrides (Applies to all themes)
+        "gitDecoration.errorResourceForeground": "#d26d16",
+        "gitDecoration.warningResourceForeground": "#d26d16",
+
+        // Specific Tokyo Night Gogh Overrides
+        "[Tokyo Night Gogh]": {
+            // -- Backgrounds & General --
+            "editor.background": "#02060a",
+            "editor.foreground": "#ffffff",
+            "terminal.background": "#000000",
+            "icon.foreground": "#6eecb5",
+
+            // -- Line Numbers & Gutter --
+            "editorGutter.background": "#051114",
+            "editorLineNumber.foreground": "#4a746e",
+            "editorLineNumber.activeForeground": "#00ffaa",
+            "editorRuler.foreground": "#101316",
+
+            // -- Activity Bar (Far Left Strip) --
+            "activityBar.background": "#011b1f",
+            "activityBar.foreground": "#00ffc8d7",
+            "activityBar.inactiveForeground": "#2e6e60",
+            "activityBarBadge.background": "#d26d16",
+            "activityBarBadge.foreground": "#000000",
+
+            // -- Side Bar (File Explorer) --
+            "sideBar.background": "#050a0a",
+            "sideBar.foreground": "#a9d6d0",
+            "list.activeSelectionBackground": "#08c4a5",
+            "list.activeSelectionForeground": "#000000",
+            "list.focusBackground": "#01ffc09f",
+            "list.focusForeground": "#000000",
+			"quickInputList.focusBackground": "#01ffc09f",
+			"quickInputList.focusForeground": "#000000",
+            "list.hoverBackground": "#113130",
+            "list.hoverForeground": "#ffffff",
+            "list.inactiveSelectionBackground": "#022f32",
+            "list.inactiveSelectionForeground": "#ffffff",
+            "list.errorForeground": "#d26d16",
+            "list.warningForeground": "#d26d16",
+
+            // -- Title Bar & Tabs (Top) --
+            "titleBar.activeBackground": "#011b1f",
+            "titleBar.activeForeground": "#03c983",
+            "titleBar.inactiveBackground": "#020b0d",
+            "titleBar.inactiveForeground": "#6e7773",
+            "editorGroupHeader.tabsBackground": "#050a0a",
+            "tab.activeBackground": "#0b3431",
+            "tab.activeBorderTop": "#00ffaa",
+            "tab.activeForeground": "#ffffff",
+            "tab.inactiveBackground": "#020b0d",
+            "tab.inactiveForeground": "#6e7773",
+
+            // -- Breadcrumbs (Below Tabs) --
+            "breadcrumb.background": "#0f1919",
+            "breadcrumb.foreground": "#a9d6d0",
+            "breadcrumb.focusForeground": "#00ff99",
+
+            // -- Sticky Scroll (Freezed Top Lines) --
+            "editorStickyScroll.background": "#02060a",
+            "editorStickyScroll.border": "#02191c",
+            "editorStickyScroll.shadow": "#02191c",
+            "editorStickyScrollGutter.background": "#051114",
+            "editorStickyScrollHover.background": "#02191c",
+
+            // -- Status Bar & Panel (Bottom) --
+            "statusBar.background": "#011b1f",
+            "statusBar.foreground": "#5c7061",
+            "statusBar.border": "#1f5f4b",
+            "panel.background": "#02060a",
+            "panel.border": "#005555",
+            "panelTitle.activeBorder": "#00ff99",
+            "panelTitle.activeForeground": "#ffffff",
+            "panelTitle.inactiveForeground": "#4a5b5a",
+
+            // -- Editor Interactions (Highlights & Hover) --
+            "editorHoverWidget.background": "#000000",
+            "editorHoverWidget.border": "#0f665c",
+            "editorHoverWidget.foreground": "#ffffff",
+            "editor.lineHighlightBackground": "#031920",
+            "editor.lineHighlightBorder": "#031920",
+
+            // Word Highlight (Clicking a variable)
+            "editor.wordHighlightBackground": "#0088ff22",       // Read access
+            "editor.wordHighlightBorder": "#0088ff",
+            "editor.wordHighlightStrongBackground": "#ff00c322", // Write access
+            "editor.wordHighlightStrongBorder": "#ff00a6",
+            "editor.selectionHighlightBackground": "#c8fc3a22",  // Manual selection
+            "editor.selectionHighlightBorder": "#94fc3a",
+
+            // -- Auto-Complete (Suggest Widget) --
+            "editorSuggestWidget.background": "#02060a",
+            "editorSuggestWidget.border": "#00ff99",
+            "editorSuggestWidget.foreground": "#a9d6d0",
+            "editorSuggestWidget.highlightForeground": "#c8fc3a",
+            "editorSuggestWidget.selectedBackground": "#08c4a544",
+            "editorSuggestWidget.selectedForeground": "#ffffff",
+            "editorSuggestWidget.selectedIconForeground": "#ffffff"
+        }
+    },
+
+    // ==========================================
+    // 8. TEXTMATE RULES (Syntax Highlighting)
+    // ==========================================
+    "editor.tokenColorCustomizations": {
+        "[Tokyo Night Gogh]": {
+            "comments": "#00ffea9f",
+            "textMateRules": [
+                {
+                    "name": "Vim String",
+                    "scope": ["string", "punctuation.definition.string", "string punctuation.section.embedded source", "string.quoted.single.c", "string.quoted.double.c"],
+                    "settings": { "foreground": "#c8fc3a", "fontStyle": "italic" }
+                },
+                {
+                    "name": "Vim Type",
+                    "scope": ["entity.name.type", "storage.type", "support.type", "variable.other.assignment.shell"],
+                    "settings": { "foreground": "#00ffa6", "fontStyle": "bold" }
+                },
+                {
+                    "name": "Vim Storage Modifier",
+                    "scope": ["storage.modifier"],
+                    "settings": { "foreground": "#00ffa6", "fontStyle": "bold italic" }
+                },
+                {
+                    "name": "Vim PreProc & Shebang",
+                    "scope": ["keyword.control.directive.include.c", "keyword.control.directive.include.cpp", "meta.preprocessor.include.cpp", "meta.preprocessor.include.c", "comment.line.shebang", "punctuation.definition.comment.shebang"],
+                    "settings": { "foreground": "#a200ff" }
+                },
+                {
+                    "name": "Library Include",
+                    "scope": ["string.quoted.other.lt-gt.include", "meta.preprocessor.include punctuation.definition.string.begin", "meta.preprocessor.include punctuation.definition.string.end", "meta.preprocessor.include punctuation.definition.string"],
+                    "settings": { "foreground": "#ff7b00", "fontStyle": "italic" }
+                },
+                {
+                    "name": "In-Function Variable",
+                    "scope": ["variable.other.local", "variable.other.normal.shell", "variable.other.readwrite", "meta.block variable", "support.type.property-name.json.comments", "string.json.comments", "meta.structure.dictionary.json.comments"],
+                    "settings": { "foreground": "#f6ffd0" }
+                },
+                {
+                    "name": "Vim Function",
+                    "scope": ["entity.name.function", "support.function", "meta.function-call"],
+                    "settings": { "foreground": "#ffffff", "fontStyle": "bold" }
+                },
+                {
+                    "name": "Vim NULL",
+                    "scope": ["constant.language.null"],
+                    "settings": { "foreground": "#ff0055", "fontStyle": "bold" }
+                },
+                {
+                    "name": "Vim Constant",
+                    "scope": ["constant.numeric", "variable.other.constant"],
+                    "settings": { "foreground": "#fb62fb" }
+                },
+                {
+                    "name": "Vim Control Keyword",
+                    "scope": ["keyword.control", "meta.block"],
+                    "settings": { "foreground": "#00fff2" }
+                },
+                {
+                    "name": "Vim Operators",
+                    "scope": ["keyword.operator"],
+                    "settings": { "foreground": "#9961ff" }
+                },
+                {
+                    "name": "Vim Parameters",
+                    "scope": ["variable.parameter"],
+                    "settings": { "foreground": "#ffffff", "fontStyle": "italic" }
+                },
+                {
+                    "name": "Vim Booleans & Built-ins",
+                    "scope": [
+                        "constant.language",
+                        "keyword.other.bool"
+                    ],
+                    "settings": { "foreground": "#0088ff", "fontStyle": "bold" }
+                }
+            ]
+        }
+    },
+
+    // ==========================================
+    // 9. SEMANTIC OVERRIDES (Clangd Hacks)
+    // ==========================================
+    "editor.semanticTokenColorCustomizations": {
+        "[Tokyo Night Gogh]": {
+            "rules": {
+                "macro": { "foreground": "#ff3377", "fontStyle": "bold" },
+                "function.defaultLibrary": { "foreground": "#ffffffca", "fontStyle": "italic" },
+                "property": "#80fab3",
+                "enumMember": { "foreground": "#0088ff", "fontStyle": "bold" }
+            }
+        }
+    },
+
+    "workbench.statusBar.visible": false,
+    "editor.minimap.enabled": false,
+    "files.autoSave": "onFocusChange",
+    "workbench.sideBar.location": "right",
+    "workbench.activityBar.location": "bottom",
+
+    "editor.copyWithSyntaxHighlighting": false,
+    "editor.emptySelectionClipboard": false,
+    "workbench.editor.enablePreview": false,
+    "window.newWindowDimensions": "inherit",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "files.trimTrailingWhitespace": true,
+    "diffEditor.renderSideBySide": false,
+    "editor.snippetSuggestions": "top",
+    "editor.detectIndentation": false,
+    "window.nativeFullScreen": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "workbench.editor.showTabs": "none",
+    "editor.guides.indentation": false,
+
+	"breadcrumbs.enabled": true,
+	"scm.diffDecorations": "none",
+	"editor.hover.delay": 1000,
+	"editor.hover.enabled": "on",
+	"editor.matchBrackets": "near",
+	"workbench.tips.enabled": false,
+	"editor.colorDecorators": true,
+	"git.decorations.enabled": false,
+	"workbench.startupEditor": "none",
+	"editor.lightbulb.enabled": "off",
+	"editor.selectionHighlight": false,
+	"editor.overviewRulerBorder": false,
+	"editor.renderLineHighlight": "none",
+	"editor.occurrencesHighlight": "off",
+	"problems.decorations.enabled": false,
+	"editor.renderControlCharacters": false,
+	"editor.hideCursorInOverviewRuler": true,
+	"editor.gotoLocation.multipleReferences": "goto",
+	"editor.gotoLocation.multipleDefinitions": "goto",
+	"editor.gotoLocation.multipleDeclarations": "goto",
+	"workbench.editor.enablePreviewFromQuickOpen": false,
+	"editor.gotoLocation.multipleImplementations": "goto",
+	"editor.gotoLocation.multipleTypeDefinitions": "goto",
+
+	"vscode_custom_css.imports": [
+		"file:///home/mapache/.config/Code/User/raccmint-custom-vscode.css",
+		"file:///home/mapache/.config/Code/User/raccmint-vscode-script.js"
+	],
+	// "editor.wordWrap": "wordWrapColumn",
+	"makefile.configureOnOpen": true,
+	"chat.agent.enabled": false,
+	"chat.checkpoints.enabled": false,
+	"chat.editor.autoFocus": false,
+	"chat.editor.localAgent.enabled": false,
+	"chat.viewSessions.enabled": false,
+	"chat.tips.enabled": false,
+	"window.titleBarStyle": "custom",
+	"js/ts.suggest.paths": false,
+}
