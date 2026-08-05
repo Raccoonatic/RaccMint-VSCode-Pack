@@ -9,8 +9,8 @@
     "editor.semanticHighlighting.enabled": true,
 	"editor.fontSize": 14,
 	"diffEditor.ignoreTrimWhitespace": false,
-	"42header.username": "lde-san-",
-	"42header.email": "lde-san-@student.42porto.com",
+	"42header.username": "$HEADER_NAME",
+	"42header.email": "$HEADER_EMAIL",
 
     // ==========================================
     // 2. TERMINAL SETTINGS
@@ -31,7 +31,7 @@
     // ==========================================
     // 4. EXTENSION: CLANGD (C++ COMPILER)
     // ==========================================
-    "clangd.path": "/home/mapache/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/22.1.6/clangd_22.1.6/bin/clangd",
+    "clangd.path": "$HOME/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/22.1.6/clangd_22.1.6/bin/clangd",
 	"clangd.fallbackFlags": [
         "-Wall",
         "-Wextra",
@@ -297,8 +297,8 @@
 	"editor.gotoLocation.multipleTypeDefinitions": "goto",
 
 	"vscode_custom_css.imports": [
-		"file:///home/mapache/.config/Code/User/raccmint-custom-vscode.css",
-		"file:///home/mapache/.config/Code/User/raccmint-vscode-script.js"
+		"file://$HOME/.config/Code/User/raccmint-custom-vscode.css",
+		"file://$HOME/.config/Code/User/raccmint-vscode-script.js"
 	],
 	// "editor.wordWrap": "wordWrapColumn",
 	"makefile.configureOnOpen": true,
