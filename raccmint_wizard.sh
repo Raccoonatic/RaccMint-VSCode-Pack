@@ -12,6 +12,43 @@ sudo apt install $HOME/Downloads/vscode_latest.deb
 
 rm -rf $HOME/Downloads/vscode_latest.deb
 
+	#3.1. VSCode Start Up
+code &
+
+echo ""
+echo "=================================================================="
+echo "                   VSCode Welcome Screen"
+echo "=================================================================="
+echo " For the wizard to finish setting up. Please go past any welcome"
+echo " screens, tutorials, or first-time popups. Maybe even log in to"
+echo " your GitHub if you feel like it. Just keep in mind that your"
+echo " settings will be overwritten."
+echo ""
+echo " After that, close the VSCode, and come back to this window."
+echo "=================================================================="
+echo ""
+
+sleep 3
+# 2. Interactive Y/N prompt loop
+while true; do
+    read -p "Do you want to continue with the RaccMint set up? (Y/N): " yn
+    case $yn in
+        [Yy]* )
+            echo "Proceeding with the script..."
+            # Ensure any lingering background process is terminated cleanly
+            killall code 2>/dev/null || true
+            break
+            ;;
+        [Nn]* )
+            echo "Setup aborted by user. Exiting script."
+            exit 1
+            ;;
+        * )
+            echo "Please answer Y/y (Yes) or N/n (No)."
+            ;;
+    esac
+done
+
 #4. Get the RaccMint pack
 
 git clone git@github.com:Raccoonatic/RaccMint-VSCode-Pack.git $HOME/RaccMintPack
@@ -83,10 +120,11 @@ TARGET_DIR="/usr/share/code/resources/app/out/vs/code/electron-sandbox/workbench
 OLD_TIME=$(stat -c %Y "$TARGET_DIR" 2>/dev/null || echo "0")
 
 	# 15.3. Fire the ENABLE command
+code &
 code --open-url "vscode://command/extension.enableCustomCSS"
 
 	# 15.4. The Polling Loop (Wait dynamically until the timestamp changes)
-TIMEOUT=20
+TIMEOUT=10
 ELAPSED=0
 echo "Waiting for extension to patch core files..."
 
@@ -103,6 +141,7 @@ done
 	# 15.5. File change detected! Safe to kill.
 echo "Patch applied successfully! Closing VS Code..."
 killall code
+sleep 2
 
 #16. Reload the Custom CSS and JS.
 
@@ -113,10 +152,11 @@ TARGET_DIR="/usr/share/code/resources/app/out/vs/code/electron-sandbox/workbench
 OLD_TIME=$(stat -c %Y "$TARGET_DIR" 2>/dev/null || echo "0")
 
 	# 16.3. Fire the RELOAD command via URL handler
+code &
 code --open-url "vscode://command/extension.updateCustomCSS"
 
 	# 16.4. Dynamic polling loop (waits patiently until the files are successfully rewritten)
-TIMEOUT=20
+TIMEOUT=10
 ELAPSED=0
 echo "Waiting for custom CSS/JS to reload and patch..."
 
@@ -182,12 +222,13 @@ var getTemplate = function (languageId) {
         .replace(new RegExp("^(.{" + width + "})(.*)(.{" + width + "})$", 'gm'), left + '$2' + right);
 };
 var pad = function (value, width) {
-    return value.concat(' '.repeat(width)).substr(0, width);
+    return String(value || '').concat(' '.repeat(width)).substr(0, width);
 };
-var formatDate = function (date) {
-    return date.format('YYYY/MM/DD HH:mm:ss');
+exports.formatDate = function (date) {
+    if (typeof date === 'string') return date;
+    return moment(date).format('YYYY/MM/DD HH:mm:ss');
 };
-var parseDate = function (date) {
+exports.parseDate = function (date) {
     return moment(date, 'YYYY/MM/DD HH:mm:ss');
 };
 exports.supportsLanguage = function (languageId) {
@@ -199,7 +240,7 @@ exports.extractHeader = function (text) {
     return match ? match[0] : null;
 };
 var fieldRegex = function (name) {
-    return new RegExp("^((?:.*\\\n)*.*)(\\$" + name + "_*)", '');
+    return new RegExp("^((?:.*\\n)*.*)(\\$" + name + "_*)", '');
 };
 var getFieldValue = function (header, name) {
     var _a = genericTemplate.match(fieldRegex(name)), _ = _a[0], offset = _a[1], field = _a[2];
@@ -211,5 +252,32 @@ var setFieldValue = function (header, name, value) {
         .concat(pad(value, field.length))
         .concat(header.substr(offset.length + field.length));
 };
+exports.getHeaderInfo = function (header) {
+    return {
+        filename: getFieldValue(header, "FILENAME").trim(),
+        author: getFieldValue(header, "AUTHOR").trim(),
+        createdAt: getFieldValue(header, "CREATEDAT").trim(),
+        createdBy: getFieldValue(header, "CREATEDBY").trim(),
+        updatedAt: getFieldValue(header, "UPDATEDAT").trim(),
+        updatedBy: getFieldValue(header, "UPDATEDBY").trim()
+    };
+};
+exports.renderHeader = function (languageId, info) {
+    var authorString = info.author;
+    if (info.email && info.author.indexOf('<') === -1) {
+        authorString = info.author + ' <' + info.email + '>';
+    }
+    return [
+        { name: 'FILENAME', value: info.filename },
+        { name: 'AUTHOR', value: authorString },
+        { name: 'CREATEDAT', value: exports.formatDate(info.createdAt) }, 
+        { name: 'CREATEDBY', value: info.createdBy },
+        { name: 'UPDATEDAT', value: exports.formatDate(info.updatedAt) },
+        { name: 'UPDATEDBY', value: info.updatedBy }
+    ].reduce(function (header, field) {
+        return setFieldValue(header, field.name, field.value);
+    }, getTemplate(languageId));
+};
 EOF
+
 echo "RaccMint pack installed successfully! Coding has never felt so fresh!"
