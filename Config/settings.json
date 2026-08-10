@@ -308,5 +308,6 @@
 	"chat.editor.localAgent.enabled": false,
 	"chat.viewSessions.enabled": false,
 	"chat.tips.enabled": false,
-	"window.titleBarStyle": "custom"
+	"window.titleBarStyle": "custom",
+	"extensions.ignoreRecommendations": true
 }
